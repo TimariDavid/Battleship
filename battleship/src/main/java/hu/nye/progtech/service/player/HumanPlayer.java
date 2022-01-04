@@ -44,7 +44,7 @@ public class HumanPlayer implements IPlayer {
 
     @Override
     public void fireAt(IPlayer opponent) {
-        System.out.printf("%n Alright %s - Enter coordinates for your attack: (Example: 'A 1' or 'D 9')", playerName);
+        System.out.printf("%n Alright %s - Enter coordinates for your attack: (Example: 'A 1' or 'D 9'): ", playerName);
 
         boolean isPointValid = false;
         while (!isPointValid) {

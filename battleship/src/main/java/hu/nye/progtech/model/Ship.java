@@ -38,7 +38,7 @@ public class Ship {
             return Result.DESTROYED;
         } else if (lives < size) {
             return Result.HIT;
-        } else if (lives == size){
+        } else if (lives == size) {
             return Result.SHIP;
         } else {
             return Result.NO_HIT;

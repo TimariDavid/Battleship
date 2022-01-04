@@ -24,8 +24,8 @@ public class Board {
     private static final Logger LOGGER = LoggerFactory.getLogger(Board.class);
 
     private Scanner scanner;
-    private IGameField[][] firstBoard;
-    private IGameField[][] secondBoard;
+    private IGameField[][] shipsTable;
+    private IGameField[][] hitsTable;
     private static final Ship[] ships;
 
     static {
@@ -40,12 +40,12 @@ public class Board {
 
     public Board() {
         this.scanner = new Scanner(System.in);
-        this.firstBoard = new IGameField[BOARD_SIZE][BOARD_SIZE];
-        this.secondBoard = new IGameField[BOARD_SIZE][BOARD_SIZE];
+        this.shipsTable = new IGameField[BOARD_SIZE][BOARD_SIZE];
+        this.hitsTable = new IGameField[BOARD_SIZE][BOARD_SIZE];
         for (int i = 0; i < BOARD_SIZE; i++) {
             for (int j = 0; j < BOARD_SIZE; j++) {
-                firstBoard[i][j] = new WaterField();
-                secondBoard[i][j] = new WaterField();
+                shipsTable[i][j] = new WaterField();
+                hitsTable[i][j] = new WaterField();
             }
         }
     }
@@ -68,13 +68,13 @@ public class Board {
      *
      * @param x koordináta első paramétere
      * @param y koordináta második paramétere
-     * @return a játéktérnek a kér koordinátájú mezője
+     * @return a játéktérnek a kért koordinátájú mezője
      */
     public IGameField getField(int x, int y) {
         if (!isInsideBoard(x, y)) {
             throw new IllegalArgumentException("Outside board - try again: ");
         }
-        return firstBoard[y][x];
+        return shipsTable[y][x];
     }
 
     /**
@@ -98,12 +98,12 @@ public class Board {
         for (int i = 0; i < BOARD_SIZE; i++) {
             System.out.printf("%d\t", i + 1);
             for (int j = 0; j < BOARD_SIZE; j++) {
-                System.out.printf("%s\t", firstBoard[i][j].getIcon());
+                System.out.printf("%s\t", shipsTable[i][j].getIcon());
             }
 
             System.out.print("\t" + (1 + i) + "\t");
             for (int j = 0; j < BOARD_SIZE; j++) {
-                System.out.printf("%s\t", secondBoard[i][j].getIcon());
+                System.out.printf("%s\t", hitsTable[i][j].getIcon());
             }
 
             System.out.println();
@@ -184,8 +184,8 @@ public class Board {
             return false;
         }
 
-        for (int i = 0; i <length; i++) {
-            if (firstBoard[point[1] + i * ydifference - 1][point[0] + i * xdifference - 1].getIcon() != WATER) {
+        for (int i = 0; i < length; i++) {
+            if (shipsTable[point[1] + i * ydifference - 1][point[0] + i * xdifference - 1].getIcon() != WATER) {
                 return false;
             }
         }
@@ -201,7 +201,7 @@ public class Board {
             ydifference = 1;
         }
         for (int i = 0; i < ship.getSize(); i++) {
-            firstBoard[startingPoint[1] + i * ydifference - 1][startingPoint[0] + i * xdifference - 1] = new ShipField(ship);
+            shipsTable[startingPoint[1] + i * ydifference - 1][startingPoint[0] + i * xdifference - 1] = new ShipField(ship);
         }
     }
 

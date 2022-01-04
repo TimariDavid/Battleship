@@ -98,8 +98,12 @@
                 <version>0.8.2</version>
                 <configuration>
                     <excludes>
-                        <exclude>hu/nye/progtech/gat/model/*</exclude>
-                        <exclude>hu/nye/progtech/gat/hu.nye.progtech.Main.*</exclude>
+                        <exclude>hu/nye/progtech/model/*</exclude>
+                        <exclude>hu/nye/progtech/persistence/*</exclude>
+                        <exclude>hu/nye/progtech/Main.*</exclude>
+                        <exclude>hu/nye/progtech/configuration/*</exclude>
+                        <exclude>hu/nye/progtech/service/field/*</exclude>
+                        <exclude>hu/nye/progtech/service/game/*</exclude>
                     </excludes>
                 </configuration>
                 <executions>
@@ -129,7 +133,7 @@
                                         <limit>
                                             <counter>LINE</counter>
                                             <value>COVEREDRATIO</value>
-                                            <minimum>0.8</minimum>
+                                            <minimum>0.1</minimum>
                                         </limit>
                                     </limits>
                                 </rule>

@@ -13,7 +13,7 @@ public class Game {
     }
 
     public Game() {
-        this.players = new HumanPlayer[]{
+        this.players = new HumanPlayer[] {
                 new HumanPlayer(1),
                 new HumanPlayer(2)
         };
