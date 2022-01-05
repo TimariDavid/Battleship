@@ -19,8 +19,8 @@ public class ScoreSavesRepository {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ScoreSavesRepository.class);
 
-    public static final String INSERT_STATEMENT = "INSERT INTO players (name, wins) VALUES (?, ?);";
-    public static final String SELECT_STATEMENT = "SELECT FROM players;";
+    public static final String INSERT_STATEMENT = "INSERT INTO NAME_SAVES (id, name, wins) VALUES (1, ?, ?);";
+    public static final String SELECT_STATEMENT = "SELECT * FROM NAME_SAVES WHERE id = 1;";
 
     private final Connection connection;
 
@@ -35,10 +35,11 @@ public class ScoreSavesRepository {
      * @param victory a játékos győzelmánek száma
      * @throws SQLException az adatbázis miatt
      */
-    public void update(String name, Integer victory) throws SQLException {
+    public void update(Integer id, String name, Integer victory) throws SQLException {
         try (PreparedStatement preparedStatement = connection.prepareStatement(INSERT_STATEMENT)) {
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, victory.toString());
+            preparedStatement.setString(1, String.valueOf(id));
+            preparedStatement.setString(2, name);
+            preparedStatement.setString(3, victory.toString());
             preparedStatement.executeUpdate();
         }
     }

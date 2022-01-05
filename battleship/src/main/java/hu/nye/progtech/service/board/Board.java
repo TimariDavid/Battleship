@@ -23,9 +23,9 @@ public class Board {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(Board.class);
 
-    private Scanner scanner;
-    private IGameField[][] shipsTable;
-    private IGameField[][] hitsTable;
+    private final Scanner scanner;
+    private final IGameField[][] shipsTable;
+    private final IGameField[][] hitsTable;
     private static final Ship[] ships;
 
     static {
